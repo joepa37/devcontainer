@@ -1,0 +1,41 @@
+services:
+  redis_cluster:
+    image: redis:7.2
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    command: ["redis-server","--appendonly","yes"]
+    networks:
+      - devnet
+  
+  tempo:
+    image: grafana/tempo:2.1.1
+    networks:
+      - devnet
+    ports:
+      - "3200:3200"
+      - "4317:4317"
+      - "4318:4318"
+    volumes:
+      - ./tempo/tempo-config.yaml:/etc/tempo/config.yaml
+      - ./tempo/data:/var/lib/tempo
+    command: -config.file=/etc/tempo/config.yaml
+    restart: unless-stopped
+
+  devcontainer:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    working_dir: /workspace
+    networks:
+      - devnet
+    command: sleep infinity
+
+volumes:
+  redis_data:
+  
+networks:
+  devnet:
+    driver: bridge

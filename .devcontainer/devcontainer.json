@@ -1,0 +1,25 @@
+{
+  "name": "Dev Workspace",
+  "dockerComposeFile": [
+    "docker-compose.workspace.yml"
+  ],
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [8000, 6379, 4317],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "ms-python.vscode-pylance",
+        "SonarSource.sonarlint-vscode"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}
