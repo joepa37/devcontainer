@@ -1,17 +1,14 @@
 {
   "name": "Dev Workspace",
-  "dockerComposeFile": [
-    "docker-compose.workspace.yml"
-  ],
-  "service": "devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "workspaceFolder": "/workspace",
-  "shutdownAction": "stopCompose",
   "forwardPorts": [8000, 6379, 4317],
   "customizations": {
     "vscode": {
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "terminal.integrated.defaultProfile.linux": "bash"
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
       },
       "extensions": [
         "ms-python.python",
