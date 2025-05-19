@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
-WORKDIR /opt/app
+WORKDIR /workspace
 
 # Copy project files into the container
 COPY  requirements.txt .
